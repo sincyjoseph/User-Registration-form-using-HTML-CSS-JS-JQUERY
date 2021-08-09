@@ -1,0 +1,129 @@
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>User Registration Page</title>  
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script>
+        $(function() {
+        $( "#datepicker" ).datepicker({
+            dateFormat : 'mm/dd/yy',
+            changeMonth : true,
+            changeYear : true,
+            yearRange: '-100y:c+nn',
+            maxDate: '-1d'
+        });
+        });
+    </script>
+
+    <script>
+        function validation(){
+        alert("Successfully submitted")
+        }
+    </script>
+        
+    <link rel="stylesheet" href='style.css'
+        
+    </head>
+
+    <body> 
+        <div class="User-Registration">
+            <div class="form">
+                <form class="Register-form" onsubmit="validation()">                  
+                    <h1>USER REGISTRATION</h1><br>
+                    <label for="firstname"><b>First Name</b></label>
+                    <input type="text" placeholder="Enter First Name" required><br>
+                    
+
+                    <label for="lastname"><b>LastName</b></label>
+                    <input type="text" placeholder="Enter Last Name" required><br>
+
+                    <label for="middlename"><b>Middle Name</b></label>
+                    <input type="text" placeholder="Enter Middle Name"><br>
+
+                    <label for="dateofbirth">Date of Birth</label>
+                    <input type="text" id="datepicker"><br>
+
+                    <label for="email"><b>Email ID</b></label>
+                    <input type="text" placeholder="Enter Email ID" name="email" id="email" pattern=".+@gmail\.com" size="30" required><br>
+                
+                    <label for="gender"><b>Gender</b></label><hr>
+                    <label for="male">Male</label>
+                    <input type="radio" name="gender" id="male" value="male" checked>
+                    <label for="female">Female</label>
+                    <input type="radio" name="gender" id="female" value="female"><br>
+ 
+
+                    <div class="container">
+
+                        <div class="f-group">
+                            <label for="">Country</label>
+                            <select name="slct1" id="slct1" onchange="populate(this.id,'slct2')">
+                                <option value="">Select a Country</option>
+                                <option value="india">INDIA</option>
+                                <option value="usa">USA</option>
+                                <option value="uk">UK</option>
+                            </select>
+                        </div>
+
+                        <div class="f-group">
+                            <label for="">State</label>
+                            <select name="slct2" id="slct2"></select>
+                        </div>
+                    
+                    </div>
+
+                    <script>
+                        function populate(s1,s2){
+                            var s1 = document.getElementById(s1);
+                            var s2 = document.getElementById(s2);
+                           
+                            s2.innerHTML = "";
+
+                            if(s1.value == "india"){
+                                var optionArray = ['kerala|Kerala', 'karnataka|Karnataka', 'tamilnadu|Tamilnadu'];
+                            }
+                            else if(s1.value == "usa"){
+                                var optionArray = ['alabama|Alabama', 'alaska|Alaska', 'arizona|Arizona']; 
+                            }
+                            else if(s1.value == "uk"){
+                                var optionArray = ['london|London', 'kent|Kent', 'devon|Devon'];
+                            }
+
+                            for(var option in optionArray){
+                                var pair = optionArray[option].split("|");
+                                var newoption = document.createElement("option");
+
+                                newoption.value = pair[0]; 
+                                newoption.innerHTML = pair[1];
+
+                                s2.options.add(newoption);
+                            }
+                        }
+                    </script>
+                 
+                    <input type="file" accept=".jpg, .jpeg, .pdf, .docx" id="file"/>
+                    <p>Maximum size 5MB</p>
+                    <p>File extension restricted to jpeg, jpg, pdf, docx</p>
+
+                    <script>
+                        var uploadField = document.getElementById("file");
+
+                        uploadField.onchange = function() {
+                            if(this.files[0].size > 5242880){
+                            alert("File is too big!,Maximum size 5MB");
+                            this.value = "";
+                            };
+                        };
+                    </script>
+
+                    <button type="submit" value="Submit">Submit</button>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
